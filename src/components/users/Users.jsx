@@ -1,10 +1,10 @@
 import React from 'react';
 import UserItem from './UserItem';
-import Spiner from '../layout/Spiner';
+import Spinner from '../layout/Spinner';
 
 const Users = ({ users, loading }) => {
 	if (loading) {
-		return <Spiner />;
+		return <Spinner />;
 	} else {
 		return (
 			<div style={userStyle}>

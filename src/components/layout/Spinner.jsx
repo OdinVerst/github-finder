@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import spiner from './spinner.gif';
-const Spiner = () => {
+const Spinner = () => {
 	return (
 		<Fragment>
 			<img
@@ -12,4 +12,4 @@ const Spiner = () => {
 	);
 };
 
-export default Spiner;
+export default Spinner;
