@@ -4,7 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import axios from 'axios';
 import Search from './components/users/Search';
-import { async } from 'q';
+import Alerts from './components/layout/Alerts';
 
 class App extends Component {
 	state = {
@@ -33,6 +33,7 @@ class App extends Component {
 			<div className="App">
 				<Navbar title="Github Finder" icon="fab fa-github" />
 				<div className="container">
+					<Alerts alerts={null} type="error" />
 					<Search
 						searchUser={this.searchUser}
 						clearUsers={this.clearUsers}
