@@ -9,7 +9,8 @@ import Alerts from './components/layout/Alerts';
 class App extends Component {
 	state = {
 		users: [],
-		loading: false
+		loading: false,
+		alerts: null
 	};
 
 	searchUser = async text => {
@@ -26,6 +27,13 @@ class App extends Component {
 		this.setState({ users: [], loading: false });
 	};
 
+	setAlerts = (text, type) => {
+		this.setState({ alerts: { text, type } });
+		setTimeout(() => {
+			this.setState({ alerts: null });
+		}, 3000);
+	};
+
 	render() {
 		const { users, loading } = this.state;
 
@@ -33,10 +41,11 @@ class App extends Component {
 			<div className="App">
 				<Navbar title="Github Finder" icon="fab fa-github" />
 				<div className="container">
-					<Alerts alerts={null} type="error" />
+					<Alerts alerts={this.state.alerts} />
 					<Search
 						searchUser={this.searchUser}
 						clearUsers={this.clearUsers}
+						setAlerts={this.setAlerts}
 						showClear={users.length > 0 ? true : false}
 					/>
 					<Users loading={loading} users={users} />
