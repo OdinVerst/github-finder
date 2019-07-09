@@ -1,63 +1,57 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-class Search extends Component {
-	state = {
-		text: ''
+const Search = ({ clearUsers, showClear, setAlerts, searchUser }) => {
+	const [text, setText] = useState('');
+
+	const handlerChange = e => {
+		setText(e.target.value);
 	};
 
-	static propTypes = {
-		searchUser: PropTypes.func.isRequired,
-		clearUsers: PropTypes.func.isRequired,
-		showClear: PropTypes.bool.isRequired,
-		setAlerts: PropTypes.func.isRequired
-	};
-
-	handlerChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
-	};
-
-	handlerSubmit = e => {
+	const handlerSubmit = e => {
 		e.preventDefault();
-		if (this.state.text === '') {
-			this.props.setAlerts(' Please enter something', 'light');
+		if (text === '') {
+			setAlerts(' Please enter something', 'light');
 		} else {
-			this.props.searchUser(this.state.text);
-			this.setState({ text: '' });
+			searchUser(text);
+			setText('');
 		}
 	};
 
-	render() {
-		const { clearUsers, showClear } = this.props;
-
-		return (
-			<form onSubmit={this.handlerSubmit} className="form">
-				<input
-					type="text"
-					name="text"
-					placeholder="Search Users"
-					value={this.state.text}
-					onChange={this.handlerChange}
-				/>
+	return (
+		<form onSubmit={handlerSubmit} className="form">
+			<input
+				type="text"
+				name="text"
+				placeholder="Search Users"
+				value={text}
+				onChange={handlerChange}
+			/>
+			<button
+				className="btn btn-dark btn-block"
+				style={{ marginBottom: '10px' }}
+				type="submit"
+			>
+				Search
+			</button>
+			{showClear && (
 				<button
-					className="btn btn-dark btn-block"
-					style={{ marginBottom: '10px' }}
-					type="submit"
+					type="button"
+					onClick={clearUsers}
+					className="btn btn-light btn-block"
 				>
-					Search
+					Clear
 				</button>
-				{showClear && (
-					<button
-						type="button"
-						onClick={clearUsers}
-						className="btn btn-light btn-block"
-					>
-						Clear
-					</button>
-				)}
-			</form>
-		);
-	}
-}
+			)}
+		</form>
+	);
+};
+
+Search.propTypes = {
+	searchUser: PropTypes.func.isRequired,
+	clearUsers: PropTypes.func.isRequired,
+	showClear: PropTypes.bool.isRequired,
+	setAlerts: PropTypes.func.isRequired
+};
 
 export default Search;
