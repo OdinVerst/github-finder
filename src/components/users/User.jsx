@@ -1,14 +1,15 @@
 import React, { Fragment, useEffect } from 'react';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
-import Repos from '../repos/Repos';
+import ReposList from '../repos/ReposList';
 import PropTypes from 'prop-types';
 
 const User = ({ user, getUser, getUserRepo, match, repos, loading }) => {
 	useEffect(() => {
 		getUser(match.params.login);
 		getUserRepo(match.params.login);
-	}, [getUser, getUserRepo, match.params.login]);
+		// eslint-disable-next-line
+	}, []);
 
 	const {
 		login,
@@ -89,7 +90,7 @@ const User = ({ user, getUser, getUserRepo, match, repos, loading }) => {
 				<div className="badge badge-ligtht">Public repos: {public_repos}</div>
 				<div className="badge badge-dark">Public gists: {public_gists}</div>
 			</div>
-			<Repos repos={repos} />
+			<ReposList repos={repos} />
 		</Fragment>
 	);
 };

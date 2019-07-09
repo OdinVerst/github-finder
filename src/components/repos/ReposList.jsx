@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReposItem from './ReposItem';
 
-const Repos = props => {
+const ReposList = props => {
 	return (
 		<Fragment>
 			{props.repos.map(repo => (
@@ -11,8 +11,8 @@ const Repos = props => {
 		</Fragment>
 	);
 };
-Repos.propTypes = {
-	repos: PropTypes.object.isRequired
+ReposList.propTypes = {
+	repos: PropTypes.array.isRequired
 };
 
-export default Repos;
+export default ReposList;
