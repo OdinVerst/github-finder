@@ -25,7 +25,9 @@ class User extends Component {
 			public_repos
 		} = this.props.user;
 
-		if (this.props.loading) return <Spinner />;
+		const { repos, loading } = this.props;
+
+		if (loading) return <Spinner />;
 		return (
 			<Fragment>
 				<Link to="/" className="btn btn-light">
@@ -88,7 +90,7 @@ class User extends Component {
 					<div className="badge badge-ligtht">Public repos: {public_repos}</div>
 					<div className="badge badge-dark">Public gists: {public_gists}</div>
 				</div>
-				<Repos repos={this.props.repos} />
+				<Repos repos={repos} />
 			</Fragment>
 		);
 	}

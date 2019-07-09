@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReposItem from './ReposItem';
 
 const Repos = props => {
-	console.log(props);
 	return (
 		<Fragment>
 			{props.repos.map(repo => (

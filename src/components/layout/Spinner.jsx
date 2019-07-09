@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import spiner from './spinner.gif';
+
 const Spinner = () => {
 	return (
 		<Fragment>
