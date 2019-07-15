@@ -13,7 +13,6 @@ import User from './components/users/User';
 import GithubState from './components/context/github/GithubState';
 
 const App = () => {
-	const [users, setUsers] = useState([]);
 	const [user, setUser] = useState({});
 	const [repos, setRepos] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -41,11 +40,6 @@ const App = () => {
 		setLoading(false);
 	};
 
-	const clearUsers = () => {
-		setUsers([]);
-		setLoading(false);
-	};
-
 	const showAlerts = (text, type) => {
 		setAlert({ text, type });
 		setTimeout(() => {
@@ -66,12 +60,8 @@ const App = () => {
 								path="/"
 								render={props => (
 									<Fragment>
-										<Search
-											clearUsers={clearUsers}
-											setAlerts={showAlerts}
-											showClear={users.length > 0 ? true : false}
-										/>
-										<Users loading={loading} users={users} />
+										<Search setAlerts={showAlerts} />
+										<Users />
 									</Fragment>
 								)}
 							/>
