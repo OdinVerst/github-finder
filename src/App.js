@@ -18,16 +18,6 @@ const App = () => {
 	const [loading, setLoading] = useState(false);
 	const [alerts, setAlert] = useState(null);
 
-	const getUser = async login => {
-		setLoading(true);
-		const res = await axios.get(
-			`https://api.github.com/users/${login}?client_id=${
-				process.env.REACT_APP_GITHUB_CLIENT_ID
-			}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-		);
-		setUser(res.data);
-		setLoading(false);
-	};
 
 	const getUserRepo = async login => {
 		setLoading(true);
@@ -72,8 +62,6 @@ const App = () => {
 								render={props => (
 									<User
 										{...props}
-										getUser={getUser}
-										user={user}
 										loading={loading}
 										repos={repos}
 										getUserRepo={getUserRepo}
